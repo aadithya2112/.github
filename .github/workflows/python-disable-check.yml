@@ -41,12 +41,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download disable_statements_check.py
-        run: |
-          mkdir -p /tmp/scripts
-          curl -sSL -o /tmp/scripts/disable_statements_check.py \
-            https://raw.githubusercontent.com/PalisadoesFoundation/.github/main/.github/workflows/scripts/disable_statements_check.py
-
       - name: Run disable statements check
         run: |
-          python /tmp/scripts/disable_statements_check.py --repo=${{ inputs.repo-type }} --files ${{ steps.changed-files.outputs.all_changed_files }}
+          python .github/workflows/scripts/disable_statements_check.py --repo=${{ inputs.repo-type }} --files ${{ steps.changed-files.outputs.all_changed_files }}
